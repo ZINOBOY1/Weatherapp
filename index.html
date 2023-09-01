@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- header -->
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Enter city name"
+            spellcheck="false">
+            <button><img src="/images/search.png" alt=""></button>
+        </div>
+        <!-- header end -->
+        <div class="weather">
+            <img src="images/rain.png" alt="rain-icon">
+            <h1 class="temp">22°</h1>
+            <h2 class="city">New york</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="images/humidity.png" alt="">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="images/wind.png" alt="">
+                    <div>
+                        <p class="wind">15 km/h</p>
+                        <p>wind speed</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const apikey = "16ccfc4e48b640fb598aa14214547c03";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=bangalore";
+        async function checkweather(){
+            const response = await fetch(apiUrl + '&appid=${apikey}');
+            var data = await response.json();
+
+            console.log(data);
+
+            document.queryselector(".city").innerHTML = data.name;
+            document.queryselector(".temp").innerHTML = data.main.temp;
+            document.queryselector(".humidity").innerHTML = data.main.humidity;
+            document.queryselector(".city").innerHTML = data.wind.speed;
+        }
+        checkweather();
+
+    </script>
+        
+</body>
+</html>
